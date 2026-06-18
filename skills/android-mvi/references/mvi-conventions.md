@@ -25,7 +25,7 @@ Conventions:
 
 - Feature type: `<ScreenSubject>UserIntent`
 - Intent events: past tense, with a visible screen/subject prefix
-- Example: `TaskDetailStarted`, `TaskDetailBackPressed`, `TaskDetailSwipedLeft`, `GlobalRetryDismissed`
+- Example: `TaskDetailStarted`, `TaskDetailBackPressed`, `TaskDetailSwipedLeft`
 
 ```kotlin
 sealed interface TaskDetailUserIntent : UserIntent {

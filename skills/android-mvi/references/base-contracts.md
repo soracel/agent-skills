@@ -38,9 +38,9 @@ sealed interface TaskDetailUserIntent : UserIntent {
     data class TaskDetailTitleChanged(val value: String) : TaskDetailUserIntent
 }
 
-sealed interface GlobalRetryUserIntent : UserIntent {
-    data object GlobalRetryRequested : GlobalRetryUserIntent
-    data object GlobalRetryDismissed : GlobalRetryUserIntent
+sealed interface ConnectionBannerUserIntent : UserIntent {
+    data object ConnectionBannerRetryTapped : ConnectionBannerUserIntent
+    data object ConnectionBannerDismissed : ConnectionBannerUserIntent
 }
 
 sealed interface LoginUserIntent : UserIntent {
@@ -53,7 +53,7 @@ sealed interface LoginUserIntent : UserIntent {
 Rules of thumb:
 
 - Name the sealed interface `<ScreenSubject>UserIntent`.
-- Use past tense and keep the screen or subject prefix visible, for example `TaskDetailBackPressed`, `TaskDetailSwipedLeft`, and `GlobalRetryDismissed`.
+- Use past tense and keep the screen or subject prefix visible, for example `TaskDetailBackPressed`, and `TaskDetailSwipedLeft`.
 - Name intents in user language, not reducer language; avoid names like `SetStateToHidden`.
 - Use `data object` for payload-free intents and `data class` for intents with payloads.
 - Keep intents small and self-describing.
@@ -274,23 +274,23 @@ How to subclass:
 Reference example:
 
 ```kotlin
-class GlobalRetryViewModel(
-    private val globalApiRetryManager: GlobalApiRetryManager,
-) : MVIViewModel<GlobalRetryUserIntent, GlobalRetryUiState>(
-        initialState = GlobalRetryHidden,
+class ConnectionBannerViewModel(
+    private val connectionBannerManager: ConnectionBannerManager,
+) : MVIViewModel<ConnectionBannerUserIntent, ConnectionBannerUiState>(
+        initialState = ConnectionBannerHidden,
     ) {
     init {
         viewModelScope.launch {
-            globalApiRetryManager.uiState.collect { newState ->
+            connectionBannerManager.uiState.collect { newState ->
                 updateState { newState }
             }
         }
     }
 
-    override fun onUserIntent(intent: GlobalRetryUserIntent) {
+    override fun onUserIntent(intent: ConnectionBannerUserIntent) {
         when (intent) {
-            GlobalRetryRequested -> globalApiRetryManager.executeRetry()
-            GlobalRetryDismissed -> globalApiRetryManager.dismiss()
+            ConnectionBannerRetryTapped -> connectionBannerManager.retry()
+            ConnectionBannerDismissed -> connectionBannerManager.dismiss()
         }
     }
 }

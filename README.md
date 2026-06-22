@@ -4,6 +4,19 @@ A collection of skills for AI coding agents.
 
 Skills follow the [Agent Skills](https://agentskills.io/) format.
 
+## Agent and Plugin Compatibility
+
+This repository is structured around portable Agent Skills and can also be used as a Codex plugin.
+
+- Agent Skills remain in `skills/<skill-name>/SKILL.md` with optional `references/`, `assets/`, `evals/`, and agent-specific metadata.
+- Codex plugin metadata lives in `.codex-plugin/plugin.json` and points to the existing `./skills/` directory.
+- Agent-specific files belong under each skill's `agents/` directory so future agents can add their own metadata without changing the skill content.
+- Shared guidance should stay in `SKILL.md` and `references/`; keep Codex-only behavior in plugin or `agents/openai.yaml` metadata.
+
+### Use as a Codex Plugin
+
+Install or package this repository as a local Codex plugin from the repository root. The Codex manifest is intentionally thin and reuses the same `skills/` tree used by other Agent Skills-compatible tooling.
+
 ## Available Skills
 
 ### android-mvi (thx to @soracel for co-authoring)

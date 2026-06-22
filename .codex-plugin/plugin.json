@@ -1,0 +1,36 @@
+{
+  "name": "agent-skills",
+  "version": "0.1.0",
+  "description": "Android architecture skills for AI coding agents.",
+  "author": {
+    "name": "soracel",
+    "url": "https://github.com/swissonid"
+  },
+  "homepage": "https://github.com/swissonid/agent-skills",
+  "repository": "https://github.com/swissonid/agent-skills",
+  "keywords": [
+    "android",
+    "kotlin",
+    "mvi",
+    "clean-architecture",
+    "agent-skills"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Android Agent Skills",
+    "shortDescription": "Android MVI and clean architecture skills",
+    "longDescription": "A standards-oriented collection of Android architecture skills for AI coding agents, packaged as a Codex plugin while preserving the Agent Skills directory format.",
+    "developerName": "soracel",
+    "category": "Development",
+    "capabilities": [
+      "Skills"
+    ],
+    "websiteURL": "https://github.com/swissonid/agent-skills",
+    "defaultPrompt": [
+      "Use Android MVI conventions for this screen.",
+      "Apply Android clean architecture boundaries.",
+      "Combine MVI with clean architecture for this feature."
+    ],
+    "brandColor": "#3B82F6"
+  }
+}
